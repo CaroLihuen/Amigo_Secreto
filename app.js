@@ -1,18 +1,16 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-/**
- *  1-  Agregar nombres en una lista y que estós aparezcan en la pantalla
- *  2- Validación: que solo se agreguen nombres y no solo nada ni números extrañós u otra cosa
- *  3- Sorteo: al clickear el botón te devuelve un amigo aleatorio y que aparezca en pantalla =>
- *   El amigo secreto sorteado es: NombredelAmigo
- */
-
-
 const listadeAmigos = []
 
 //Listado de Amigos
 function agregarAmigo(){
-    let input = document.getElementById("amigo").value
-    listadeAmigos.push(input)
+    const input = document.getElementById("amigo")//.value
+    const agregado = input.value
+    if(agregado === ''){
+        return alert('Tiene que colocar el nombre de un amigo')
+      } else if(!isNaN(agregado) && agregado.trim() !== ""){
+        return alert('El amigo no puede contener números')
+      }
+    input.value = ''
+    listadeAmigos.push(agregado)
     mostrarAmigos(listadeAmigos)
     return listadeAmigos
 }
@@ -33,7 +31,7 @@ function sortearAmigo() {
     const resultado = document.getElementById("resultado")
     resultado.innerHTML= '';
 
-    let amigo = Math.floor(Math.random() *listadeAmigos.length)
+    const amigo = Math.floor(Math.random() *listadeAmigos.length)
     
     const li = document.createElement("li");
     li.textContent= `Tu amigo sorteado secreto es: ${listadeAmigos[amigo]}!` ;

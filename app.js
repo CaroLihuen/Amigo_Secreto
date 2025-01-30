@@ -6,12 +6,36 @@
  *   El amigo secreto sorteado es: NombredelAmigo
  */
 
-let lista = ["María","Lautaro","Damian","Laura","Fernanda"]
 
-function Sorteo() {
-    let amigo = Math.floor(Math.random() *lista.length)
-    console.log(lista[amigo])
-    return lista[amigo]
+const listadeAmigos = []
+
+//Listado de Amigos
+function agregarAmigo(){
+    let input = document.getElementById("amigo").value
+    listadeAmigos.push(input)
+    mostrarAmigos(listadeAmigos)
+    return listadeAmigos
 }
 
-Sorteo()
+//Muestra los amigos 
+function mostrarAmigos(array){
+    const lista = document.getElementById("listaAmigos")
+    lista.innerHTML = '';
+    array.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
+    });
+}
+
+//Sorteo del Amigo
+function sortearAmigo() {
+    const resultado = document.getElementById("resultado")
+    resultado.innerHTML= '';
+
+    let amigo = Math.floor(Math.random() *listadeAmigos.length)
+    
+    const li = document.createElement("li");
+    li.textContent= `Tu amigo sorteado secreto es: ${listadeAmigos[amigo]}!` ;
+    resultado.appendChild(li)
+}
